@@ -36,9 +36,8 @@ public class Postazione {
 
     public Postazione(){}
 
-    public Postazione(Edificio edificio, List<Prenotazione> prenotazioni, String codiceUnivoco, String descrizione, TipologiaPostazione tipoPostazione, int maxPartecipanti) {
+    public Postazione(Edificio edificio, String codiceUnivoco, String descrizione, TipologiaPostazione tipoPostazione, int maxPartecipanti) {
         this.edificio = edificio;
-        this.prenotazioni = prenotazioni;
         this.codiceUnivoco = codiceUnivoco;
         this.descrizione = descrizione;
         this.tipoPostazione = tipoPostazione;

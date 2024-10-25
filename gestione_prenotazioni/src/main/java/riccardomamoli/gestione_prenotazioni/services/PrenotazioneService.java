@@ -7,6 +7,8 @@ import riccardomamoli.gestione_prenotazioni.entities.Postazione;
 import riccardomamoli.gestione_prenotazioni.entities.Prenotazione;
 import riccardomamoli.gestione_prenotazioni.entities.Utente;
 import riccardomamoli.gestione_prenotazioni.exceptions.AlreadyPresentRecordException;
+import riccardomamoli.gestione_prenotazioni.exceptions.IdNotFoundException;
+import riccardomamoli.gestione_prenotazioni.exceptions.SameDateException;
 import riccardomamoli.gestione_prenotazioni.exceptions.SameIdException;
 import riccardomamoli.gestione_prenotazioni.repositories.EdificioRepository;
 import riccardomamoli.gestione_prenotazioni.repositories.PostazioneRepository;
@@ -36,8 +38,8 @@ public class PrenotazioneService {
        return utenteRepository.save(utente);
    }
 
-   public Optional<Utente> trovaUtente(Long id) {
-       return utenteRepository.findById(id);
+   public Utente trovaUtente(Long id) {
+       return utenteRepository.findById(id).orElseThrow(() -> new IdNotFoundException("Non c'è una postazione con questo ID!"));
    }
 
    // POSTAZIONE
@@ -46,8 +48,8 @@ public class PrenotazioneService {
        return postazioneRepository.save(postazione);
     }
 
-    public Optional<Postazione> trovaPostazione(Long id) {
-        return postazioneRepository.findById(id);
+    public Postazione trovaPostazione(Long id) {
+        return postazioneRepository.findById(id).orElseThrow(() -> new IdNotFoundException("Non c'è una postazione con questo ID!"));
     }
 
 
@@ -55,14 +57,18 @@ public class PrenotazioneService {
    // PRENOTAZIONE
 
     public Prenotazione creaPrenotazione(Prenotazione prenotazione) {
-       if(prenotazioneRepository.existsByDataPrenotazione(prenotazione.getDataPrenotazione())){
-           throw new SameIdException("Esiste già una prenotazione in questa giornata per la postazione numero " + prenotazione.getPostazione().getIdPostazione());
 
-       }       return prenotazioneRepository.save(prenotazione);
+       if(prenotazioneRepository.existsByIdUtenteAndDataPrenotazione(prenotazione.getUtente().getIdUtente(), prenotazione.getDataPrenotazione())){
+           throw new SameIdException(prenotazione.getUtente().getNomeUtente() + "ha già una prenotazione per oggi!");
+
+       }  else if (prenotazioneRepository.existsByPostazioneAndDataPrenotazione(prenotazione.getPostazione(), prenotazione.getDataPrenotazione())) {
+          throw new SameDateException("La postazione numero " + prenotazione.getPostazione().getIdPostazione() + " è gia occupata in data " + prenotazione.getDataPrenotazione());
+        }
+        return prenotazioneRepository.save(prenotazione);
     }
 
-    public Optional<Prenotazione> trovaPrenotazione(Long id){
-        return prenotazioneRepository.findById(id);
+    public Prenotazione trovaPrenotazione(Long id){
+        return prenotazioneRepository.findById(id).orElseThrow(() -> new IdNotFoundException("Non c'è una prenotazione con questo ID!"));
     }
 
 
@@ -77,8 +83,8 @@ public class PrenotazioneService {
        }
     }
 
-    public Optional<Edificio> trovaEdificio(Long id){
-       return edificioRepository.findById(id);
+    public Edificio trovaEdificio(Long id){
+       return edificioRepository.findById(id).orElseThrow(() -> new IdNotFoundException("Non c'è un edificio con questo ID!"));
     }
 
 }
