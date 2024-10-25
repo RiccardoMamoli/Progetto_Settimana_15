@@ -6,6 +6,5 @@ import riccardomamoli.gestione_prenotazioni.entities.Prenotazione;
 import java.time.LocalDate;
 
 public interface PrenotazioneRepository extends JpaRepository<Prenotazione, Long> {
-
-
+    boolean existsByDataPrenotazione(LocalDate dataPrenotazione);
 }

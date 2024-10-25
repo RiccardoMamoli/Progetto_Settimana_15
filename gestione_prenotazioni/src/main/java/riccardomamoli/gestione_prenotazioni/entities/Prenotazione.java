@@ -10,29 +10,29 @@ public class Prenotazione {
 
     @Id
     @GeneratedValue
-    private long id_prenotazione;
+    private long idPrenotazione;
 
     @ManyToOne
-    @JoinColumn(name = "id_utente")
+    @JoinColumn(name = "idUtente")
     private Utente utente;
 
     @ManyToOne
-    @JoinColumn(name = "id_postazione")
+    @JoinColumn(name = "idPostazione")
     private Postazione postazione;
 
     @Column(name = "data_prenotazione")
-    private LocalDate data_prenotazione;
+    private LocalDate dataPrenotazione;
 
     public Prenotazione(){};
 
-    public Prenotazione(Utente utente, Postazione postazione, LocalDate data_prenotazione) {
+    public Prenotazione(Utente utente, Postazione postazione, LocalDate dataPrenotazione) {
         this.utente = utente;
         this.postazione = postazione;
-        this.data_prenotazione = data_prenotazione;
+        this.dataPrenotazione = dataPrenotazione;
     }
 
-    public long getId_prenotazione() {
-        return id_prenotazione;
+    public long getIdPrenotazione() {
+        return idPrenotazione;
     }
 
 
@@ -52,21 +52,21 @@ public class Prenotazione {
         this.postazione = postazione;
     }
 
-    public LocalDate getData_prenotazione() {
-        return data_prenotazione;
+    public LocalDate getDataPrenotazione() {
+        return dataPrenotazione;
     }
 
-    public void setData_prenotazione(LocalDate data_prenotazione) {
-        this.data_prenotazione = data_prenotazione;
+    public void setDataPrenotazione(LocalDate dataPrenotazione) {
+        this.dataPrenotazione = dataPrenotazione;
     }
 
     @Override
     public String toString() {
         return "Prenotazione{" +
-                "id_prenotazione=" + id_prenotazione +
+                "idPrenotazione=" + idPrenotazione +
                 ", utente=" + utente +
                 ", postazione=" + postazione +
-                ", data_prenotazione=" + data_prenotazione +
+                ", dataPrenotazione=" + dataPrenotazione +
                 '}';
     }
 }

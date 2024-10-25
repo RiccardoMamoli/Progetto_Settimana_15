@@ -9,60 +9,60 @@ public class Edificio {
     @Column(name = "id_edificio")
     @Id
     @GeneratedValue
-    private long id_edificio;
+    private long idEdificio;
 
     @Column(name = "nome_edificio")
-    private String nome_edificio;
+    private String nomeEdificio;
 
     @Column(name = "indirizzo_edificio")
-    private String indirizzo_edificio;
+    private String indirizzEdificio;
 
     @Column(name = "citta_edificio")
-    private String citta_edificio;
+    private String cittEdificio;
 
     public Edificio(){};
 
-    public Edificio(String nome_edificio, String indirizzo_edificio, String citta_edificio) {
-        this.nome_edificio = nome_edificio;
-        this.indirizzo_edificio = indirizzo_edificio;
-        this.citta_edificio = citta_edificio;
+    public Edificio(String nomeEdificio, String indirizzEdificio, String cittEdificio) {
+        this.nomeEdificio = nomeEdificio;
+        this.indirizzEdificio = indirizzEdificio;
+        this.cittEdificio = cittEdificio;
     }
 
-    public long getId_edificio() {
-        return id_edificio;
+    public long getIdEdificio() {
+        return idEdificio;
     }
 
-    public String getNome_edificio() {
-        return nome_edificio;
+    public String getNomeEdificio() {
+        return nomeEdificio;
     }
 
-    public void setNome_edificio(String nome_edificio) {
-        this.nome_edificio = nome_edificio;
+    public void setNomeEdificio(String nomeEdificio) {
+        this.nomeEdificio = nomeEdificio;
     }
 
-    public String getIndirizzo_edificio() {
-        return indirizzo_edificio;
+    public String getIndirizzEdificio() {
+        return indirizzEdificio;
     }
 
-    public void setIndirizzo_edificio(String indirizzo_edificio) {
-        this.indirizzo_edificio = indirizzo_edificio;
+    public void setIndirizzEdificio(String indirizzEdificio) {
+        this.indirizzEdificio = indirizzEdificio;
     }
 
-    public String getCitta_edificio() {
-        return citta_edificio;
+    public String getCittEdificio() {
+        return cittEdificio;
     }
 
-    public void setCitta_edificio(String citta_edificio) {
-        this.citta_edificio = citta_edificio;
+    public void setCittEdificio(String cittEdificio) {
+        this.cittEdificio = cittEdificio;
     }
 
     @Override
     public String toString() {
         return "Edificio{" +
-                "id_edificio=" + id_edificio +
-                ", nome_edificio='" + nome_edificio + '\'' +
-                ", indirizzo_edificio='" + indirizzo_edificio + '\'' +
-                ", citta_edificio='" + citta_edificio + '\'' +
+                "idEdificio=" + idEdificio +
+                ", nomeEdificio='" + nomeEdificio + '\'' +
+                ", indirizzEdificio='" + indirizzEdificio + '\'' +
+                ", cittEdificio='" + cittEdificio + '\'' +
                 '}';
     }
 }

@@ -4,7 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import riccardomamoli.gestione_prenotazioni.entities.Postazione;
 
 public interface PostazioneRepository extends JpaRepository<Postazione, Long> {
-
-
-
+    boolean existsByIdPostazione(Long idPostazione);
 }

@@ -12,7 +12,7 @@ public class Postazione {
     @Column(name = "id_postazione")
     @Id
     @GeneratedValue
-    private long id_postazione;
+    private long idPostazione;
 
     @ManyToOne
     @JoinColumn(name = "id_edificio")
@@ -22,31 +22,31 @@ public class Postazione {
     private List<Prenotazione> prenotazioni;
 
     @Column(name = "codice_univoco", unique = true)
-    private String codice_univoco;
+    private String codiceUnivoco;
 
     @Column(name = "descrizione")
     private String descrizione;
 
     @Column(name = "tipo_postazione")
     @Enumerated(EnumType.STRING)
-    private TipologiaPostazione tipo_postazione;
+    private TipologiaPostazione tipoPostazione;
 
     @Column(name = "max_partecipanti")
-    private int max_partecipanti;
+    private int maxPartecipanti;
 
     public Postazione(){}
 
-    public Postazione(Edificio edificio, List<Prenotazione> prenotazioni, String codice_univoco, String descrizione, TipologiaPostazione tipo_postazione, int max_partecipanti) {
+    public Postazione(Edificio edificio, List<Prenotazione> prenotazioni, String codiceUnivoco, String descrizione, TipologiaPostazione tipoPostazione, int maxPartecipanti) {
         this.edificio = edificio;
         this.prenotazioni = prenotazioni;
-        this.codice_univoco = codice_univoco;
+        this.codiceUnivoco = codiceUnivoco;
         this.descrizione = descrizione;
-        this.tipo_postazione = tipo_postazione;
-        this.max_partecipanti = max_partecipanti;
+        this.tipoPostazione = tipoPostazione;
+        this.maxPartecipanti = maxPartecipanti;
     }
 
-    public long getId_postazione() {
-        return id_postazione;
+    public long getIdPostazione() {
+        return idPostazione;
     }
 
     public Edificio getEdificio() {
@@ -65,12 +65,12 @@ public class Postazione {
         this.prenotazioni = prenotazioni;
     }
 
-    public String getCodice_univoco() {
-        return codice_univoco;
+    public String getCodiceUnivoco() {
+        return codiceUnivoco;
     }
 
-    public void setCodice_univoco(String codice_univoco) {
-        this.codice_univoco = codice_univoco;
+    public void setCodiceUnivoco(String codiceUnivoco) {
+        this.codiceUnivoco = codiceUnivoco;
     }
 
     public String getDescrizione() {
@@ -81,32 +81,32 @@ public class Postazione {
         this.descrizione = descrizione;
     }
 
-    public TipologiaPostazione getTipo_postazione() {
-        return tipo_postazione;
+    public TipologiaPostazione getTipoPostazione() {
+        return tipoPostazione;
     }
 
-    public void setTipo_postazione(TipologiaPostazione tipo_postazione) {
-        this.tipo_postazione = tipo_postazione;
+    public void setTipoPostazione(TipologiaPostazione tipoPostazione) {
+        this.tipoPostazione = tipoPostazione;
     }
 
-    public int getMax_partecipanti() {
-        return max_partecipanti;
+    public int getMaxPartecipanti() {
+        return maxPartecipanti;
     }
 
-    public void setMax_partecipanti(int max_partecipanti) {
-        this.max_partecipanti = max_partecipanti;
+    public void setMaxPartecipanti(int maxPartecipanti) {
+        this.maxPartecipanti = maxPartecipanti;
     }
 
     @Override
     public String toString() {
         return "Postazione{" +
-                "id_postazione=" + id_postazione +
+                "idPostazione=" + idPostazione +
                 ", edificio=" + edificio +
                 ", prenotazioni=" + prenotazioni +
-                ", codice_univoco='" + codice_univoco + '\'' +
+                ", codiceUnivoco='" + codiceUnivoco + '\'' +
                 ", descrizione='" + descrizione + '\'' +
-                ", tipo_postazione=" + tipo_postazione +
-                ", max_partecipanti=" + max_partecipanti +
+                ", tipoPostazione=" + tipoPostazione +
+                ", maxPartecipanti=" + maxPartecipanti +
                 '}';
     }
 }

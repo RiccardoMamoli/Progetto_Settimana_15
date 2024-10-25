@@ -10,27 +10,27 @@ public class Utente {
 
     @Id
     @GeneratedValue
-    private long id_utente;
+    private long idUtente;
 
     @Column(name = "username")
     private String username;
 
     @Column(name = "nome")
-    private String nome;
+    private String nomeUtente;
 
     @Column(name = "email")
-    private String email;
+    private String emailUtente;
 
     public Utente(){};
 
-    public Utente(String username, String nome, String email) {
+    public Utente(String username, String nomeUtente, String emailUtente) {
         this.username = username;
-        this.nome = nome;
-        this.email = email;
+        this.nomeUtente = nomeUtente;
+        this.emailUtente = emailUtente;
     }
 
-    public long getId_utente() {
-        return id_utente;
+    public long getIdUtente() {
+        return idUtente;
     }
 
     public String getUsername() {
@@ -41,29 +41,29 @@ public class Utente {
         this.username = username;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeUtente() {
+        return nomeUtente;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeUtente(String nomeUtente) {
+        this.nomeUtente = nomeUtente;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmailUtente() {
+        return emailUtente;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailUtente(String emailUtente) {
+        this.emailUtente = emailUtente;
     }
 
     @Override
     public String toString() {
         return "Utente{" +
-                "id_utente=" + id_utente +
+                "idUtente=" + idUtente +
                 ", username='" + username + '\'' +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
+                ", nomeUtente='" + nomeUtente + '\'' +
+                ", emailUtente='" + emailUtente + '\'' +
                 '}';
     }
 }
