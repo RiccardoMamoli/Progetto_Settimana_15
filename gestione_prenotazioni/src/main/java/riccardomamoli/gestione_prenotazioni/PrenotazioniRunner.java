@@ -11,6 +11,7 @@ import riccardomamoli.gestione_prenotazioni.enums.TipologiaPostazione;
 import riccardomamoli.gestione_prenotazioni.services.PrenotazioneService;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -35,16 +36,26 @@ public class PrenotazioniRunner implements CommandLineRunner {
         Edificio edificio1 = new Edificio("Edificio Rosso", "Via Rossi 16" , "Reggio Emilia");
         Edificio edificio2 = new Edificio("Edifcio Blu", "Via Blu 43", "Milano");
         Edificio edificio3 = new Edificio("Edifcio Verde", "Via Verdi 2", "Parma");
-        prenotazioneService.creaEdificio(edificio1);
-        prenotazioneService.creaEdificio(edificio2);
-        prenotazioneService.creaEdificio(edificio3);
+
+
+        Edificio edificio4 = new Edificio("Edificio Azzurro", "Via Martiri", "Parma");
+        Edificio edificio5 = new Edificio("Edificio Nero", "Via Piero", "Reggio Emilia");
+        Edificio edificio6 = new Edificio("Edificio Arancio", "Via Martinelli", "Milano");
+        Edificio edificio7 = new Edificio("Edificio Marrone", "Via Acquaviva", "Reggio Emilia");
+
+        prenotazioneService.creaEdificio(edificio5);
+        prenotazioneService.creaEdificio(edificio6);
+        prenotazioneService.creaEdificio(edificio7);
 
  */
 
 
-        Edificio edificioTrovato1 = prenotazioneService.trovaEdificio(Long.valueOf(1));
-        Edificio edificioTrovato2 = prenotazioneService.trovaEdificio(Long.valueOf(2));
-        Edificio edificioTrovato3 = prenotazioneService.trovaEdificio(Long.valueOf(3));
+
+
+        Edificio edificioTrovato4 = prenotazioneService.trovaEdificio(Long.valueOf(52));
+        Edificio edificioTrovato5 = prenotazioneService.trovaEdificio(Long.valueOf(102));
+        Edificio edificioTrovato6 = prenotazioneService.trovaEdificio(Long.valueOf(103));
+        Edificio edificioTrovato7 = prenotazioneService.trovaEdificio(Long.valueOf(104));
 
         Utente utenteTrovato1 = prenotazioneService.trovaUtente(Long.valueOf(1));
         Utente utenteTrovato2 = prenotazioneService.trovaUtente(Long.valueOf(2));
@@ -55,11 +66,17 @@ public class PrenotazioniRunner implements CommandLineRunner {
         Postazione postazioneTrovata3 = prenotazioneService.trovaPostazione(Long.valueOf(52));
 
 
-/*
-        Postazione postazione1 = new Postazione(edificioTrovato1.get(), "12345", "Postazione molto carina", TipologiaPostazione.PRIVATO, 10);
-        Postazione postazione2 = new Postazione(edificioTrovato2.get(), "75439", "Altra postazione carina", TipologiaPostazione.OPENSPACE,20);
-        Postazione postazione3 = new Postazione(edificioTrovato3, "93483","Molta carina anche questa", TipologiaPostazione.SALA_RIUNIONI, 5);
-        prenotazioneService.creaPostazione(postazione3);
+
+        Postazione postazione1 = new Postazione(edificioTrovato4, "45453", "Postazione molto carina", TipologiaPostazione.PRIVATO, 14);
+        Postazione postazione2 = new Postazione(edificioTrovato4, "543454524", "Altra postazione carina", TipologiaPostazione.SALA_RIUNIONI,55);
+        Postazione postazione3 = new Postazione(edificioTrovato4, "9543532453","Molta carina anche questa", TipologiaPostazione.PRIVATO, 4);
+        Postazione postazione4 = new Postazione(edificioTrovato4, "345460965", "cute", TipologiaPostazione.PRIVATO, 109);
+        // prenotazioneService.creaPostazione(postazione1);
+         // prenotazioneService.creaPostazione(postazione2);
+        // prenotazioneService.creaPostazione(postazione3);
+         // prenotazioneService.creaPostazione(postazione4);
+
+        /*
         System.out.println(" ");
         System.out.println("Hai creato una nuova postazione: ");
         System.out.println(" ");
@@ -69,16 +86,31 @@ public class PrenotazioniRunner implements CommandLineRunner {
         System.out.println("Numero massimo partecipanti: " + postazione3.getMaxPartecipanti());
         System.out.println(" ");
 
- */
+         */
 
 
-        Prenotazione prenotazione1 = new Prenotazione(utenteTrovato1, postazioneTrovata1, LocalDate.of(2024 , 10, 1));
-        Prenotazione prenotazione2 = new Prenotazione(utenteTrovato2, postazioneTrovata2, LocalDate.of(2024, 9,10));
-        Prenotazione prenotazione3 = new Prenotazione(utenteTrovato3, postazioneTrovata3, LocalDate.of(2024, 10, 12));
-        prenotazioneService.creaPrenotazione(prenotazione1);
-        prenotazioneService.creaPrenotazione(prenotazione2);
-        prenotazioneService.creaPrenotazione(prenotazione3);
 
+
+        //Prenotazione prenotazione1 = new Prenotazione(utenteTrovato1, postazioneTrovata1, LocalDate.of(2024 , 10, 1));
+        //Prenotazione prenotazione2 = new Prenotazione(utenteTrovato2, postazioneTrovata2, LocalDate.of(2024, 9,10));
+        // Prenotazione prenotazione3 = new Prenotazione(utenteTrovato3, postazioneTrovata3, LocalDate.of(2024, 10, 12));
+        //prenotazioneService.creaPrenotazione(prenotazione1);
+        //prenotazioneService.creaPrenotazione(prenotazione2);
+        //prenotazioneService.creaPrenotazione(prenotazione3);
+
+         // Prenotazione prenotazione4 = new Prenotazione(utenteTrovato1, postazioneTrovata2, LocalDate.of(2024, 9,10));
+         // prenotazioneService.creaPrenotazione(prenotazione4);
+
+       List<Postazione> listaPostazioni =  prenotazioneService.trovaPostazioniPerTipoECittà(TipologiaPostazione.SALA_RIUNIONI, "Reggio Emilia");
+       listaPostazioni.forEach(postazione -> {
+           System.out.println(" ");
+           System.out.println("Postazione numero " + postazione.getIdPostazione());
+           System.out.println("Situata a: " + postazione.getEdificio().getCittEdificio());
+           System.out.println("In via " + postazione.getEdificio().getIndirizzEdificio());
+           System.out.println("Edificio: " + postazione.getEdificio().getNomeEdificio());
+           System.out.println("Tipologia:" + postazione.getTipoPostazione());
+           System.out.println(" ");
+       });
 
     }
 }

@@ -6,6 +6,7 @@ import riccardomamoli.gestione_prenotazioni.entities.Edificio;
 import riccardomamoli.gestione_prenotazioni.entities.Postazione;
 import riccardomamoli.gestione_prenotazioni.entities.Prenotazione;
 import riccardomamoli.gestione_prenotazioni.entities.Utente;
+import riccardomamoli.gestione_prenotazioni.enums.TipologiaPostazione;
 import riccardomamoli.gestione_prenotazioni.exceptions.AlreadyPresentRecordException;
 import riccardomamoli.gestione_prenotazioni.exceptions.IdNotFoundException;
 import riccardomamoli.gestione_prenotazioni.exceptions.SameDateException;
@@ -15,6 +16,7 @@ import riccardomamoli.gestione_prenotazioni.repositories.PostazioneRepository;
 import riccardomamoli.gestione_prenotazioni.repositories.PrenotazioneRepository;
 import riccardomamoli.gestione_prenotazioni.repositories.UtenteRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -52,14 +54,18 @@ public class PrenotazioneService {
         return postazioneRepository.findById(id).orElseThrow(() -> new IdNotFoundException("Non c'è una postazione con questo ID!"));
     }
 
+    public List<Postazione> trovaPostazioniPerTipoECittà(TipologiaPostazione tipologia, String citta) {
+    return postazioneRepository.findByTipoPostazioneAndEdificio_CittEdificio(tipologia, citta);
+    }
+
 
 
    // PRENOTAZIONE
 
     public Prenotazione creaPrenotazione(Prenotazione prenotazione) {
 
-       if(prenotazioneRepository.existsByIdUtenteAndDataPrenotazione(prenotazione.getUtente().getIdUtente(), prenotazione.getDataPrenotazione())){
-           throw new SameIdException(prenotazione.getUtente().getNomeUtente() + "ha già una prenotazione per oggi!");
+       if(prenotazioneRepository.existsByUtenteAndDataPrenotazione(prenotazione.getUtente(), prenotazione.getDataPrenotazione())){
+           throw new SameIdException(prenotazione.getUtente().getNomeUtente() + " ha già una prenotazione per la data " + prenotazione.getDataPrenotazione() + ".");
 
        }  else if (prenotazioneRepository.existsByPostazioneAndDataPrenotazione(prenotazione.getPostazione(), prenotazione.getDataPrenotazione())) {
           throw new SameDateException("La postazione numero " + prenotazione.getPostazione().getIdPostazione() + " è gia occupata in data " + prenotazione.getDataPrenotazione());
